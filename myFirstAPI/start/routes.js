@@ -1,5 +1,7 @@
 'use strict'
 
+const UserController = require('../app/Controllers/Http/UserController')
+
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -17,5 +19,14 @@
 const Route = use('Route')
 
 Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
+  return { password: ['password1', 'password2', 'password3'] }
 })
+
+Route.group(()=>{
+
+  Route.post('/controller', 'UserController.store');
+  Route.post('/controller1', 'UserController.store');
+  Route.post('/controller2', 'UserController.store');
+  Route.post('/controller3', 'UserController.store');
+  
+}).prefix('api/v1');
